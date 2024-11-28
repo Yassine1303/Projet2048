@@ -1,8 +1,9 @@
 import random
 
 def initialisation(taille):
-    creation_grille(taille)
+    grille = creation_grille(taille)
     creation_tuile(taille)
+    return grille
 
 def creation_grille(taille):
     #Creation Grille
@@ -11,22 +12,26 @@ def creation_grille(taille):
         grille.append([])
         for x in range(taille):
             grille[y].append(" ")
-    print(grille)
     return grille
 
 def creation_tuile(taille):
-    #Creation Tuile
-    tuile1 = random.randint(0, taille)
-    tuile2 = random.randint(0, taille)
+    #Creation Tuile 1
+    tuile1 = creation_coordonnées(taille)
+    tuile2 = creation_coordonnées(taille)
+    #Verification difference des tuiles 
     while tuile1 == tuile2:
-        tuile2 = random.randint(2, 4, 2)
-    return 
-    
+        tuile2 = creation_coordonnées(taille)
+    return [tuile1, tuile2]
 
+def creation_coordonnées(taille):
+    x = random.randint(0, taille)
+    y = random.randint(0, taille)
+    return [x, y]
 
 
 def run_game(taille):
-    creation_grille(taille)
+    grille = initialisation(taille)
+
 
 if __name__ == "__main__":
     run_game(4)
